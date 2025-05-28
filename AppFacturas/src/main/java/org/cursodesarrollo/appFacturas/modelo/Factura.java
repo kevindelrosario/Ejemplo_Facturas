@@ -101,14 +101,14 @@ public class Factura {
                 .append(this.cliente.getNombre())
                 .append("\nDescripcion: ")
                 .append(this.descripcion)
-                .append("\n")
-                .append("\n#\tNombre\tCant.\tTotal\n");
+                .append("\n");
+
 
         SimpleDateFormat df = new SimpleDateFormat("dd 'de ' MMM, yyyy"); //formato de la fecha
         sb.append("Fecha Emisión: ")
                 .append(df.format(this.fecha))
                 .append("\n");
-
+        sb.append("\n#\tNombre\tCant.\tTotal\n");
         for (ItemFactura item: this.items){
             if(item == null){
                 continue;

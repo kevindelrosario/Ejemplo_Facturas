@@ -6,9 +6,10 @@ public class Producto {
     private float precio;
     private static int ultimoCodigo; //para auto incrementar el codigo
 
-    public Producto(int codigo) {
+    public Producto() {
         this.codigo = ++ultimoCodigo;
     }
+
 
     public int getCodigo() { //El codigo solo se podra leer, ya que se creara automaticamente.
         return codigo;
