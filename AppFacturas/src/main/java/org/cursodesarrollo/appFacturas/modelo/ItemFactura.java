@@ -27,7 +27,7 @@ public class ItemFactura {
     }
 
     /***********METODOS****************/
-    public double CantidadImporte(){
-        return 0;
+    public float CantidadImporte(){
+        return this.cantidad * this.producto.getPrecio(); //calculamos la cantidad * precio
     }
 }

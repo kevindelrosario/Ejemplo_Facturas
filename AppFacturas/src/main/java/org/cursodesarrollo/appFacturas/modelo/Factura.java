@@ -14,12 +14,11 @@ public class Factura {
     private static int ultimoFolio; //para obtener el ultimo folio y luego ir incrementandolo
 
 
-
     public Factura(String descripcion, Cliente cliente) {
         this.descripcion = descripcion;
         this.cliente = cliente;
         this.items = new ItemFactura[MAX_ITEMS]; //lo iniciamos con un maximo de 12
-        this.folio = ++ ultimoFolio; //se agrega un numero mas al ultimo folio
+        this.folio = ++ultimoFolio; //se agrega un numero mas al ultimo folio
         this.fecha = new Date(); //cuando se crea la factura toma la fecha actual
     }
 
@@ -59,11 +58,47 @@ public class Factura {
         return items;
     }
 
-    public void addItemFactura(ItemFactura item){
-        if(indiceItems < MAX_ITEMS){ //mientras sea menor a 12 podra seguir agregando.
+    /******* METODOS  *********/
+
+    /**
+     * Agrega items
+     *
+     * @param item
+     */
+    public void addItemFactura(ItemFactura item) {
+        if (indiceItems < MAX_ITEMS) { //mientras sea menor a 12 podra seguir agregando.
             this.items[indiceItems++] = item; //tenemos que inicializar el arreglo para evitar la excepcion por ser null.
         }
     }
 
+    /**
+     * Calcular total
+     * suma todos los items
+     *
+     * @return cantidad total de los importes
+     */
+    public float calcularTotal() {
+        float total = 0.0f;
+        for (ItemFactura item : this.items) { //recorre los items y los va sumando
+            if (item == null) {
+                continue; //cuando sea null cerrara, para no contar los espacios vacios
+            }
+            total += item.CantidadImporte();
+        }
+        return total;
+    }
+
+    public String generarDetalle() {
+        //para concatenar varios valores
+        StringBuilder sb = new StringBuilder("Factura N# : "); //para concatenar de una forma mas limpia
+        sb.append(folio)
+                .append("\nCliente: ")
+                .append(this.cliente.getNombre())
+                .append("\nDescripcion: ")
+                .append(this.descripcion)
+                .append("\n")
+                .append("\n#\tNombre\tCant.\tTotal\n");
+        return sb.toString();
+    }
 
 }
