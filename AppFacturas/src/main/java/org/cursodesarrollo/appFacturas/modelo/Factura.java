@@ -1,0 +1,69 @@
+package org.cursodesarrollo.appFacturas.modelo;
+
+import java.util.Date;
+
+public class Factura {
+
+    private int folio; //id
+    private String descripcion;
+    private Date fecha;
+    private Cliente cliente;
+    private ItemFactura[] items; //arreglo para crear la relacion uno a muchos
+    private int indiceItems; //Lo utilizaremos para agregar los items
+    public static final int MAX_ITEMS = 12;
+    private static int ultimoFolio; //para obtener el ultimo folio y luego ir incrementandolo
+
+
+
+    public Factura(String descripcion, Cliente cliente) {
+        this.descripcion = descripcion;
+        this.cliente = cliente;
+        this.items = new ItemFactura[MAX_ITEMS]; //lo iniciamos con un maximo de 12
+        this.folio = ++ ultimoFolio; //se agrega un numero mas al ultimo folio
+        this.fecha = new Date(); //cuando se crea la factura toma la fecha actual
+    }
+
+    public int getFolio() {//solo se podra leer, no modificar
+        return folio;
+    }
+
+    public void setFolio(int folio) {
+        this.folio = folio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public ItemFactura[] getItems() { //solo necesitamos el metodo get para agregar items
+        return items;
+    }
+
+    public void addItemFactura(ItemFactura item){
+        if(indiceItems < MAX_ITEMS){ //mientras sea menor a 12 podra seguir agregando.
+            this.items[indiceItems++] = item; //tenemos que inicializar el arreglo para evitar la excepcion por ser null.
+        }
+    }
+
+
+}
