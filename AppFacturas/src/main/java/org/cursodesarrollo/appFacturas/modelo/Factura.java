@@ -1,5 +1,6 @@
 package org.cursodesarrollo.appFacturas.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Factura {
@@ -88,6 +89,10 @@ public class Factura {
         return total;
     }
 
+    /**
+     * Generar Detalles de la factura
+     * @return StringBuilder sb: detalles del pedido
+     */
     public String generarDetalle() {
         //para concatenar varios valores
         StringBuilder sb = new StringBuilder("Factura N# : "); //para concatenar de una forma mas limpia
@@ -98,6 +103,31 @@ public class Factura {
                 .append(this.descripcion)
                 .append("\n")
                 .append("\n#\tNombre\tCant.\tTotal\n");
+
+        SimpleDateFormat df = new SimpleDateFormat("dd 'de ' MMM, yyyy"); //formato de la fecha
+        sb.append("Fecha Emisión: ")
+                .append(df.format(this.fecha))
+                .append("\n");
+
+        for (ItemFactura item: this.items){
+            if(item == null){
+                continue;
+            }
+            sb.append(item.getProducto().getCodigo())
+                    .append("\t")
+                    .append(item.getProducto().getNombre())
+                    .append("\t")
+                    .append(item.getProducto().getPrecio())
+                    .append("\t")
+                    .append(item.getCantidad())
+                    .append("\t")
+                    .append(item.CantidadImporte())
+                    .append("\n");
+        }
+
+        sb.append("\nGran Total: ")
+                .append(calcularTotal());
+
         return sb.toString();
     }
 
