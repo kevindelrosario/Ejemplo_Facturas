@@ -44,7 +44,7 @@ public class EjemploFactura {
             ItemFactura item = new ItemFactura(cantidad,producto); //vamos ingresando los productos y sus cantidades
             factura.addItemFactura(item);//lo agregamos
             System.out.println(); //salto de linea
-            s.nextLine();
+            s.nextLine(); //simplemente evita que se rompa el codigo por el .nextline del nombre 
         }
 
         System.out.println(factura.generarDetalle()); //mostramos la informacion al finalizar
