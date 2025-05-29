@@ -81,11 +81,9 @@ public class Factura {
      */
     public float calcularTotal() {
         float total = 0.0f;
-        for (ItemFactura item : this.items) { //recorre los items y los va sumando
-            if (item == null) {
-                continue; //cuando sea null cerrara, para no contar los espacios vacios
-            }
-            total += item.calcularImporte();
+        for (int i = 0; i < indiceItems; i++){
+      //      ItemFactura item = this.items[i]; //recorre los items y los va sumando
+            total += this.items[i].calcularImporte();//forma mas corta
         }
         return total;
     }
@@ -109,11 +107,9 @@ public class Factura {
         sb.append("Fecha Emisión: ")
                 .append(df.format(this.fecha))
                 .append("\n");
-        sb.append("\n#\tNombre\tCant.\tTotal\n");
-        for (ItemFactura item: this.items){
-            if(item == null){
-                continue;
-            }
+        sb.append("\n#\tNombre\tPrecio\tCant.\tTotal\n");
+        for (int i = 0; i < indiceItems; i++){
+         //   ItemFactura item = this.items[i];
             //primera forma:
 //            sb.append(item.getProducto().getCodigo())
 //                    .append("\t")
@@ -125,7 +121,7 @@ public class Factura {
 //                    .append("\t")
 //                    .append(item.calcularImporte())
 //                    .append("\n");
-            sb.append(item) //directamente imprime el item que invoca el toString() que ya tenemos hecho.
+            sb.append( this.items[i].toString()) //directamente imprime el item que invoca el toString() que ya tenemos hecho.
                     .append("\n");
         }
 

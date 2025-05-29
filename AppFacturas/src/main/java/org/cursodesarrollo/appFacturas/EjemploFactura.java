@@ -17,18 +17,17 @@ public class EjemploFactura {
         cliente.setNombre("kevin");
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Ingrese una descripcion de la factura: ");
-        String desc = s.nextLine();
 
         //factura
-        Factura factura = new Factura(desc,cliente);
+        System.out.println("Ingrese una descripcion de la factura: ");
+        Factura factura = new Factura(s.nextLine(),cliente);
 
         //Producto
 
         Producto producto;
 
 
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 2; i++){
             producto = new Producto();
             System.out.print("Ingrese producto n# "+ producto.getCodigo()+ ": ");
             producto.setNombre(s.nextLine());
