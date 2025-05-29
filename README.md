@@ -4,7 +4,7 @@
 Este es un mini proyecto en Java que simula el funcionamiento básico de una factura. Se compone de clases como `Factura`, `Cliente`, `Producto` e `ItemFactura`, y representa cómo podrían gestionarse productos, cantidades y cálculos de totales para generar una factura completa con fecha, cliente e importe total.
 
 ![alt text](/Captura%20de%20pantalla%202025-05-29%20120704.png)
-![alt text](/Captura%20de%20pantalla%202025-05-29%20120704.png)
+![alt text](/Captura%20de%20pantalla%202025-05-29%20120730.png)
 
 
 > 💡 Incluye un diagrama UML con las relaciones entre las clases para facilitar su comprensión y futuras mejoras.
