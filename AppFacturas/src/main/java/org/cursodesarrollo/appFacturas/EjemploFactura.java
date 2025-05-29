@@ -26,28 +26,25 @@ public class EjemploFactura {
         //Producto
 
         Producto producto;
-        String nombre;
-        float precio;
-        int cantidad;
+
 
         for (int i = 0; i < 5; i++){
             producto = new Producto();
             System.out.print("Ingrese producto n# "+ producto.getCodigo()+ ": ");
-            nombre = s.nextLine();
-            producto.setNombre(nombre);
-            System.out.print("Ingrese el precio: ");
-            precio = s.nextFloat();
-            producto.setPrecio(precio);
-            System.out.print("Ingrese cantidad: ");
-            cantidad = s.nextInt();
+            producto.setNombre(s.nextLine());
 
-            ItemFactura item = new ItemFactura(cantidad,producto); //vamos ingresando los productos y sus cantidades
-            factura.addItemFactura(item);//lo agregamos
+            System.out.print("Ingrese el precio: ");
+            producto.setPrecio( s.nextFloat());
+
+            System.out.print("Ingrese cantidad: ");
+           // ItemFactura item = new ItemFactura(s.nextInt(),producto); //vamos ingresando los productos y sus cantidades
+            factura.addItemFactura( new ItemFactura(s.nextInt(),producto));//lo agregamos (de esta forma ahorramos codigo)
             System.out.println(); //salto de linea
-            s.nextLine(); //simplemente evita que se rompa el codigo por el .nextline del nombre 
+            s.nextLine(); //simplemente evita que se rompa el codigo por el .nextline de la variable nombre
         }
 
-        System.out.println(factura.generarDetalle()); //mostramos la informacion al finalizar
+       // System.out.println(factura.generarDetalle()); //mostramos la informacion al finalizar
+        System.out.println(factura);//ya simplemente tenemos que imprimir factura (muestra el toString())
         s.close();
     }
 }

@@ -1,6 +1,7 @@
 package org.cursodesarrollo.appFacturas.modelo;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Factura {
@@ -84,7 +85,7 @@ public class Factura {
             if (item == null) {
                 continue; //cuando sea null cerrara, para no contar los espacios vacios
             }
-            total += item.CantidadImporte();
+            total += item.calcularImporte();
         }
         return total;
     }
@@ -113,15 +114,18 @@ public class Factura {
             if(item == null){
                 continue;
             }
-            sb.append(item.getProducto().getCodigo())
-                    .append("\t")
-                    .append(item.getProducto().getNombre())
-                    .append("\t")
-                    .append(item.getProducto().getPrecio())
-                    .append("\t")
-                    .append(item.getCantidad())
-                    .append("\t")
-                    .append(item.CantidadImporte())
+            //primera forma:
+//            sb.append(item.getProducto().getCodigo())
+//                    .append("\t")
+//                    .append(item.getProducto().getNombre())
+//                    .append("\t")
+//                    .append(item.getProducto().getPrecio())
+//                    .append("\t")
+//                    .append(item.getCantidad())
+//                    .append("\t")
+//                    .append(item.calcularImporte())
+//                    .append("\n");
+            sb.append(item) //directamente imprime el item que invoca el toString() que ya tenemos hecho.
                     .append("\n");
         }
 
@@ -131,4 +135,8 @@ public class Factura {
         return sb.toString();
     }
 
+    @Override
+    public String toString() {
+        return generarDetalle(); //generarDetalle ya tiene toda la informacion del toString()
+    }
 }
